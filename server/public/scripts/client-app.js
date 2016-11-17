@@ -105,7 +105,7 @@ function appendBooks(books) {
   $("#book-list").empty();
 
   for (var i = 0; i < books.length; i++) {
-    $("#book-list").append('<div class="row book"></div>');
+    $("#book-list").append('<div class="book"></div>');
     $el = $('#book-list').children().last();
     var book = books[i];
     $el.data('id', book.id);
@@ -122,9 +122,13 @@ function appendBooks(books) {
 
     var convertedDate = book.published.substr(0, 10);
     console.log(convertedDate);
+    var $subElement1 = $('<div class="row col-md-12">');
 
-    $el.append('<input type="text" name="title" value="' + book.title + '" />');
-    $el.append('<input type="text" name="author" value="' + book.author + '" />');
+    $subElement1.append('<input class="col-md-12 form-control" type="text" name="title" value="' + book.title + '" />');
+    $el.append($subElement1);
+    //$('.col-md-6').append('</div>');
+    $el.append('<input class="col-md-5" type="text" name="author" value="' + book.author + '" />');
+
     $el.append('<input type="text" name="genre" value="' + book.genre + '" />');
     var newDate = $('<input type="date" name="published" />');
     newDate.val(convertedDate)
@@ -134,7 +138,7 @@ function appendBooks(books) {
 
     $el.append('<button class="update">Update</button>');
     $el.append('<button class="delete">Delete</button>');
-
+    //$el.append('</div>');
 
   }
 }

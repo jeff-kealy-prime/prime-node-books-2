@@ -142,7 +142,7 @@ function appendBooks(books) {
 function genreDropdown(books){
   $('.selectGenre').empty()
   console.log("first log genreDropdown: ", books);
-  $('.selectGenre').append('<option value="none"> </option>');
+  $('.selectGenre').append('<option value="All">All</option>');
   var genreArray = [];
   for (var i = 0; i < books.length; i++) {
     genreArray[i] = books[i].genre    //genreArray.push(books[i].genre) <--another way

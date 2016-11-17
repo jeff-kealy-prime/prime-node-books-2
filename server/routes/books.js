@@ -117,19 +117,30 @@ router.get('/:dropdown', function(req, res) {
       console.log('connection error: ', err);
       res.sendStatus(500);
     }
+    if (genreID == "All") {
+        client.query('Select * FROM books', function(err, result) {
+          done();
 
-    client.query('Select * FROM books WHERE genre=$1', [genreID], function(err, result) {
-      done(); // close the connection.
-      // console.log('the client!:', client);
-      if(err) {
-        console.log('select query error: ', err);
-        res.sendStatus(500);
-      }
-      //console.log(result.rows);
-      res.send(result.rows);
+          if(err) {
+            console.log('select query error: ', err);
+            res.sendStatus(500);
+          }
 
-    });
+          res.send(result.rows);
+        });
+      } else {
+          client.query('Select * FROM books WHERE genre=$1', [genreID], function(err, result) {
+            done(); // close the connection.
+            // console.log('the client!:', client);
+            if(err) {
+              console.log('select query error: ', err);
+              res.sendStatus(500);
+            }
+          //console.log(result.rows);
+          res.send(result.rows);
 
+              });
+        }
   });
 });
 
